@@ -1,0 +1,379 @@
+#include <iostream>
+
+using namespace std;
+double shengmingli = 2000;//定义主角初始生命力
+int gongjili = 150;//定义主角初始攻击力
+int fangyuli = 200;//定义主角初始防御力
+int money = 20;//定义主角初始金钱数量
+bool guoguan;//定义是否通关判定
+void wuqidian();//定义武器店函数
+void yaodian();//定义药店函数
+void guaiwu1();//定义小怪物函数
+void guaiwu2();//定义大怪物函数
+int main_main() {
+    cout << "欢迎你开始玩打怪物小游戏！\n";
+    cout << "小镇\n";
+    cout << "一个1000年的小镇。周围有一条河，有一片树林，很多房子和很多人。\n有一家药店" << endl;
+    cout << "和一家武器店。\n";
+    int xiaozhen;//定义选择项目
+    cout << "1.去武器店" << endl;
+    cout << "2.去药品店" << endl;
+    cout << "3.去打小怪物" << endl;
+    cout << "4.去打大怪物" << endl;
+    cout << "5.退出游戏" << endl;
+    cout << "6.显示你的状态" << endl;
+    cin >> xiaozhen;
+    while (xiaozhen != 5)//输入5时退出游戏
+    {
+        if (shengmingli <= 0)//主角生命力小于等于0时游戏结束
+        {
+            cout << "你死啦！" << endl;
+            break;
+        }
+        if (guoguan) {
+            cout << "恭喜通关！" << endl;
+            break;
+        }
+        if (xiaozhen == 6)//输入6可检测自己的状态
+        {
+            cout << "你的生命力:" << shengmingli << endl;
+            cout << "你的攻击力:" << gongjili << endl;
+            cout << "你的防御力:" << fangyuli << endl;
+            cout << "你拥有的钱:" << money << endl;
+        } else
+            switch (xiaozhen) {
+                case 1 :
+                    wuqidian();
+                    break;
+                case 2 :
+                    yaodian();
+                    break;
+                case 3 :
+                    guaiwu1();
+                    break;
+                case 4 :
+                    guaiwu2();
+                    break;
+                default :
+                    cout << "请不要乱选！" << endl;
+                    break;
+            }
+        cin >> xiaozhen;
+    }
+    if (xiaozhen == 5) {
+        cout << "正在退出游戏……" << endl;
+    }
+    cin.get();
+    cin.get();
+    return 0;
+}
+
+void wuqidian() {
+    cout << "欢迎来到武器店！" << endl;
+    cout << "1、买小刀（10G加2攻击力）" << endl;
+    cout << "2、买短剑（80G加20攻击力）" << endl;
+    cout << "3、买大砍刀（140G加40攻击力)" << endl;
+    cout << "4、买双节棍（200G加60攻击力）" << endl;
+    cout << "5、买盾牌（60G加30防御力）" << endl;
+    cout << "6、买铠甲（100G加60防御力）" << endl;
+    cout << "7、离开武器店" << endl;
+    int wuqidian;
+    cin >> wuqidian;
+    while (wuqidian != 7)//输入7时结束函数
+    {
+        switch (wuqidian) {
+            case 1 :
+                if (money < 10)
+                    cout << "你的钱不够" << endl;//钱不够时返回Flase
+                else {
+                    cout << "购买成功！" << endl;//钱足够时返回True
+                    gongjili += 2;
+                    money -= 10;
+                }
+                break;
+            case 2 :
+                if (money < 80)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                gongjili += 20;
+                money -= 80;
+                break;
+            case 3 :
+                if (money < 140)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                gongjili += 40;
+                money -= 140;
+                break;
+            case 4 :
+                if (money < 200)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                gongjili += 60;
+                money -= 200;
+                break;
+            case 5 :
+                if (money < 60)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                fangyuli += 30;
+                money -= 60;
+                break;
+            case 6 :
+                if (money < 100)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                fangyuli += 60;
+                money -= 100;
+                break;
+            default :
+                cout << "无" << endl;
+                break;
+        }
+        cin >> wuqidian;
+    }
+    if (wuqidian == 7) {      //返回main()主函数
+        cout << "武器店老板说：欢迎下次再来！" << endl;
+        cout << "重新又回到了小镇\n";
+        cout << "你看到了：\n";
+        cout << "一个1000年的小镇。周围有一条河，有一片树林，很多房子和很多人。" << endl;
+        cout << "有一家药店。\n和一家武器店。\n";
+        cout << "1.去武器店" << endl;
+        cout << "2.去药品店" << endl;
+        cout << "3.去打小怪物" << endl;
+        cout << "4.去打大怪物" << endl;
+        cout << "5.退出游戏" << endl;
+        cout << "6.显示你的状态" << endl;
+    }
+}
+
+/*
+yaodian()的设置与wuqidian()相同,可参照阅读.
+*/
+void yaodian() {
+    cout << "欢迎来到药品店！" << endl;
+    cout << "1、买1号补血药（10G加200生命）" << endl;
+    cout << "2、买2号补血药（50G加1000生命力）" << endl;
+    cout << "3、买3号补血药（100G加2200生命力)" << endl;
+    cout << "4、离开武器店" << endl;
+    int yaodian;
+    cin >> yaodian;
+    while (yaodian != 4) {
+        switch (yaodian) {
+            case 1 :
+                if (money < 10)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                shengmingli += 200;
+                money -= 10;
+                break;
+            case 2 :
+                if (money < 50)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                shengmingli += 1000;
+                money -= 50;
+                break;
+            case 3 :
+                if (money < 100)
+                    cout << "你的钱不够" << endl;
+                else
+                    cout << "购买成功！" << endl;
+                shengmingli += 2200;
+                money -= 100;
+                break;
+            default :
+                cout << "无" << endl;
+                break;
+        }
+        cin >> yaodian;
+    }
+    if (yaodian == 4) {
+        cout << "药品店老板说：欢迎下次再来！" << endl;
+        cout << "重新又回到了小镇\n";
+        cout << "你看到了：\n";
+        cout << "一个1000年的小镇。周围有一条河，有一片树林，很多房子和很多人。" << endl;
+        cout << "和一家武器店。\n";
+        cout << "1.去武器店" << endl;
+        cout << "2.去药品店" << endl;
+        cout << "3.去打小怪物" << endl;
+        cout << "4.去打大怪物" << endl;
+        cout << "5.退出游戏" << endl;
+        cout << "6.显示你的状态" << endl;
+    }
+}
+
+/*这里是两个战斗函数,使用指针来处理.避免造成内存崩溃.*/
+void guaiwu1() {
+    cout << "开始与小怪物战斗！！！" << endl;
+    auto *g_shengmingli = new double;//定义怪物生命
+    auto *g_gongjili = new int;//定义怪物攻击力
+    auto *g_fangyuli = new int;//定义怪物防御力
+    auto *g_money = new int;//定义怪物金钱
+    *g_shengmingli = 100;
+    *g_gongjili = 5;
+    *g_fangyuli = 3;
+    *g_money = 5;
+    auto tongji1 = new double;//用来计算主角对怪物的杀伤
+    auto tongji2 = new double;//用来计算怪物对主角的杀伤
+    *tongji1 = 0;
+    *tongji2 = 0;
+    int *huihe = new int;//定义回合数
+    *huihe = 1;
+    cout << "你开始对小怪物进行攻击！" << endl;
+    int *xuanze = new int;
+/*
+攻击计算公式
+杀伤=攻击力*2-防御力
+玩家每回合可以选择攻击与逃跑
+*/
+    while ((*g_shengmingli) > 0 && shengmingli > 0 && (*xuanze) != 2) {
+        cout << "现在是" << "第" << *huihe << "回合！" << endl;
+        cout << "请选择你的动作:\n";
+        cout << "1、攻击\n2、逃跑\n";
+        cin >> *xuanze;
+        switch ((*xuanze)) {
+            case 1 :
+                cout << "你对小怪物发动了攻击！" << endl;
+                *g_shengmingli -= gongjili * 2 - (*g_fangyuli);
+                *tongji1 = gongjili * 2 - (*g_fangyuli);
+                cout << "你打掉了小怪物" << *tongji1 << "的生命！" << endl;
+                cout << "小怪物还剩" << (*g_shengmingli) - (*tongji1) << "点生命" << endl;
+                shengmingli -= (*g_gongjili) * 2 - fangyuli;
+                *tongji2 = (*g_gongjili) * 2 - fangyuli;
+                cout << "小怪物对你发动了攻击！" << endl;
+                cout << "小怪物打掉了你" << *tongji2 << "的生命！" << endl;
+                cout << "你还剩" << shengmingli - (*tongji2) << "点生命" << endl;
+                break;
+            case 2 :
+                cout << "你决定逃跑！" << endl;
+                cout << "逃跑成功！" << endl;
+                continue;
+            default :
+                cout << "请不要乱选！" << endl;
+        }
+        (*huihe)++;
+    }
+    if ((*g_shengmingli) <= 0) {//杀死怪物后的返回
+        cout << "小怪物被你杀死了！你真厉害！！！" << endl;
+        money += (*g_money);
+        cout << "欢迎你开始玩打怪物小游戏！\n";
+        cout << "小镇\n";
+        cout << "一个1000年的小镇。周围有一条河，有一片树林，很多房子和很多人。\n有一家药店" << endl;
+        cout << "和一家武器店。\n";
+        cout << "1.去武器店" << endl;
+        cout << "2.去药品店" << endl;
+        cout << "3.去打小怪物" << endl;
+        cout << "4.去打大怪物" << endl;
+        cout << "5.退出游戏" << endl;
+        cout << "6.显示你的状态" << endl;
+    } else if (shengmingli <= 0) {//被怪物杀死后的返回
+        cout << "你被小怪物杀死了！游戏结束！！！" << endl;
+    } else if ((*xuanze) == 2) {//逃跑的返回
+        cout << "你逃回了小镇！" << endl;
+        cout << "欢迎你开始玩打怪物小游戏！\n";
+        cout << "小镇\n";
+        cout << "一个1000年的小镇。周围有一条河，有一片树林，很多房子和很多人。\n有一家药店" << endl;
+        cout << "和一家武器店。\n";
+        cout << "1.去武器店" << endl;
+        cout << "2.去药品店" << endl;
+        cout << "3.去打小怪物" << endl;
+        cout << "4.去打大怪物" << endl;
+        cout << "5.退出游戏" << endl;
+        cout << "6.显示你的状态" << endl;
+    }
+    delete g_shengmingli;
+    delete g_gongjili;
+    delete g_fangyuli;
+    delete g_money;
+    delete tongji1;
+    delete tongji2;
+}
+
+/*
+设置均与void函数guaiwu1()相同,可参照上例阅读.
+*/
+void guaiwu2() {
+    cout << "开始与大怪物战斗！！！" << endl;
+    double *g_shengmingli = new double;
+    int *g_gongjili = new int;
+    int *g_fangyuli = new int;
+    *g_shengmingli = 3600;
+    *g_gongjili = 500;
+    *g_fangyuli = 500;
+    double *tongji1 = new double;
+    double *tongji2 = new double;
+    *tongji1 = 0;
+    *tongji2 = 0;
+    int *huihe = new int;
+    *huihe = 1;
+    cout << "你开始对大怪物进行攻击！" << endl;
+    int *xuanze = new int;
+    while ((*g_shengmingli) > 0 && shengmingli > 0 && (*xuanze) != 2) {
+        cout << "现在是" << "第" << *huihe << "回合！" << endl;
+        cout << "请选择你的动作:\n";
+        cout << "1、攻击\n2、逃跑\n";
+        cin >> *xuanze;
+        switch ((*xuanze)) {
+            case 1 :
+                cout << "你对大怪物发动了攻击！" << endl;
+                *g_shengmingli -= gongjili * 2 - (*g_fangyuli);
+                *tongji1 = gongjili * 2 - (*g_fangyuli);
+                cout << "你打掉了大怪物" << *tongji1 << "的生命！" << endl;
+                cout << "大怪物还剩" << (*g_shengmingli) - (*tongji1) << "点生命" << endl;
+                shengmingli -= (*g_gongjili) * 2 - fangyuli;
+                *tongji2 = (*g_gongjili) * 2 - fangyuli;
+                cout << "大怪物对你发动了攻击！" << endl;
+                cout << "大怪物打掉了你" << *tongji2 << "的生命！" << endl;
+                cout << "你还剩" << shengmingli - (*tongji2) << "点生命" << endl;
+                break;
+            case 2 :
+                cout << "你决定逃跑！" << endl;
+                cout << "逃跑成功！" << endl;
+                continue;
+            default :
+                cout << "请不要乱选！" << endl;
+        }
+        (*huihe)++;
+    }
+    if ((*g_shengmingli) <= 0) {
+        cout << "大怪物被你杀死了！你真厉害！！！" << endl;
+        guoguan = true;
+        cout << "欢迎你开始玩打怪物小游戏！\n";
+        cout << "小镇\n";
+        cout << "一个1000年的小镇。周围有一条河，有一片树林，很多房子和很多人。\n有一家药店" << endl;
+        cout << "和一家武器店。\n";
+        cout << "1.去武器店" << endl;
+        cout << "2.去药品店" << endl;
+        cout << "3.去打小怪物" << endl;
+        cout << "4.去打大怪物" << endl;
+        cout << "5.退出游戏" << endl;
+        cout << "6.显示你的状态" << endl;
+    } else if (shengmingli <= 0) {
+        cout << "你被大怪物杀死了！游戏结束！！！" << endl;
+    } else if ((*xuanze) == 2) {
+        cout << "你逃回了小镇！" << endl;
+        cout << "欢迎你开始玩打怪物小游戏！\n";
+        cout << "小镇\n";
+        cout << "一个1000年的小镇。周围有一条河，有一片树林，很多房子和很多人。\n有一家药店" << endl;
+        cout << "和一家武器店。\n";
+        cout << "1.去武器店" << endl;
+        cout << "2.去药品店" << endl;
+        cout << "3.去打小怪物" << endl;
+        cout << "4.去打大怪物" << endl;
+        cout << "5.退出游戏" << endl;
+        cout << "6.显示你的状态" << endl;
+    }
+    delete g_shengmingli;
+    delete g_gongjili;
+    delete g_fangyuli;
+    delete tongji1;
+    delete tongji2;
+}

@@ -1,0 +1,8 @@
+//
+// Created by Administrator on 2018/1/7.
+//
+
+#ifndef CPP_PROJECTS_LOGIC_DECLARATION_H
+#define CPP_PROJECTS_LOGIC_DECLARATION_H
+
+#endif //CPP_PROJECTS_LOGIC_DECLARATION_H
